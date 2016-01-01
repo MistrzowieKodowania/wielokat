@@ -4,7 +4,6 @@ import javax.swing.JOptionPane;
 public class Ground extends World
 {
     Start start=new Start();
-    int ile;
     Rysunek rysunek=new Rysunek();
     
     public Ground()
@@ -15,27 +14,28 @@ public class Ground extends World
 
     public void act()
     {
-         start();
+         
+        if(Greenfoot.mouseClicked(start))
+        {
+             removeObject(start);
+             Greenfoot.delay(50);
+             ileBokow(); 
+        }
     }
            
         
     public void ileBokow() 
     {
+        int ile;
         do
-        { String boki = JOptionPane.showInputDialog("Ile boków ma mieć wielokąt? (Podaj n)");
-          ile = Integer.parseInt(boki);
-        }while(ile<3);
+             { try {String boki = JOptionPane.showInputDialog("Ile boków ma mieć wielokąt? (Nie mniej niż 3)");
+              ile = Integer.parseInt(boki);
+               } catch(Exception ex){
+                   JOptionPane.showMessageDialog(null, "Miałeś podać liczbę całkowitą");
+                   ile=0;
+                }
+             }while(ile<3);
         addObject (rysunek, 300,200);
         rysunek.wielokat(ile);
     }    
-
-    public void start()
-     {
-        if(Greenfoot.mousePressed(start))
-        {
-              removeObject(start);
-              Greenfoot.delay(50);
-              ileBokow();
-        }
-    }
 }

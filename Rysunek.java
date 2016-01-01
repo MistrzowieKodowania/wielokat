@@ -1,7 +1,6 @@
 import greenfoot.*;
 import java.awt.Color;
 import java.lang.Math;
-
 public class Rysunek extends Actor
 {
     GreenfootImage rys;
@@ -11,18 +10,15 @@ public class Rysunek extends Actor
     int bok;
     public void wielokat(int bok)
     {
-        this.bok=bok;
         xWiel = new int[bok];
         yWiel = new int[bok];
-        xWiel[0]=450;
-        yWiel[0]=200;
-        for (int i=1; i<bok; i++)
+        for (int i=0; i<bok; i++)
         {
             double kat= Math.toRadians(i*360/bok);
             xWiel[i]= (int)(300 + 150*Math.cos(kat));
             yWiel[i]= (int)(200 + 150*Math.sin(kat));                                   
         }
-     
+        
         setImage(new GreenfootImage(600,400));
         rys = getImage();
         rys.setColor(Color.RED);
@@ -38,5 +34,4 @@ public class Rysunek extends Actor
              rys.fillPolygon(xWiel, yWiel, xWiel.length);
              }
         }
-        
     }
